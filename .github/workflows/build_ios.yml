@@ -35,7 +35,7 @@ jobs:
       run: |
         cd ARMSX2/ios
         mkdir -p build && cd build
-        cmake .. \
+        cmake .. -DCMAKE_DISABLE_FIND_PACKAGE_CURL=ON \
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake \
           
