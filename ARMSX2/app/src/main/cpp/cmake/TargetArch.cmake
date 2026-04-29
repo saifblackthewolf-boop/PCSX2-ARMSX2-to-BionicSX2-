@@ -78,7 +78,10 @@ set(archdetect_c_code "
 # will be treated as invalid architectures since they are no longer supported by Apple
 
 function(target_architecture output_var)
-	if(APPLE AND CMAKE_OSX_ARCHITECTURES)
+	if(IOS AND CMAKE_OSX_ARCHITECTURES)
+		# iOS always uses arm64 for now
+		list(APPEND ARCH arm64)
+	elseif(APPLE AND CMAKE_OSX_ARCHITECTURES)
 		# On OS X we use CMAKE_OSX_ARCHITECTURES *if* it was set
 		# First let's normalize the order of the values
 
@@ -103,6 +106,8 @@ function(target_architecture output_var)
 				set(osx_arch_i386 TRUE)
 			elseif("${osx_arch}" STREQUAL "x86_64")
 				set(osx_arch_x86_64 TRUE)
+			elseif("${osx_arch}" STREQUAL "arm64")
+				set(osx_arch_arm64 TRUE)
 			elseif("${osx_arch}" STREQUAL "ppc64" AND ppc_support)
 				set(osx_arch_ppc64 TRUE)
 			else()
@@ -121,6 +126,10 @@ function(target_architecture output_var)
 
 		if(osx_arch_x86_64)
 			list(APPEND ARCH x86_64)
+		endif()
+
+		if(osx_arch_arm64)
+			list(APPEND ARCH arm64)
 		endif()
 
 		if(osx_arch_ppc64)
