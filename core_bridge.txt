@@ -1,0 +1,10 @@
+ARMSX2/app/src/main/cpp/3rdparty/SDL3/src/hidapi/android/hid.cpp
+ARMSX2/app/src/main/cpp/common/Android/JNI.cpp
+ARMSX2/app/src/main/cpp/main.cpp
+ARMSX2/app/src/reactnative/java/kr/co/iefriends/pcsx2/reactnative/Armsx2ReactPackage.java
+ARMSX2/app/src/reactnative/java/kr/co/iefriends/pcsx2/reactnative/Armsx2NativeModule.java
+ARMSX2/app_ui/native/armsx2.js:import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
+ARMSX2/app_ui/native/armsx2.js:const Native = NativeModules[MODULE_NAME];
+ARMSX2/app/src/reactnative/java/kr/co/iefriends/pcsx2/reactnative/Armsx2ReactPackage.java:    public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
+ARMSX2/app/src/main/cpp/pcsx2/Host.h:	/// Allows the emucore to write settings back to the frontend. Use with care.
+ARMSX2/app/src/main/java/kr/co/iefriends/pcsx2/NativeApp.java:			System.loadLibrary("emucore");
