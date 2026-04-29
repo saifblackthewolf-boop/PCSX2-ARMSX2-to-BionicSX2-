@@ -1,0 +1,6 @@
+set(CMAKE_SYSTEM_NAME iOS)
+set(CMAKE_SYSTEM_PROCESSOR arm64)
+set(CMAKE_OSX_ARCHITECTURES arm64)
+set(CMAKE_OSX_SYSROOT iphoneos)
+set(CMAKE_C_COMPILER /usr/bin/clang)
+set(CMAKE_CXX_COMPILER /usr/bin/clang++)
