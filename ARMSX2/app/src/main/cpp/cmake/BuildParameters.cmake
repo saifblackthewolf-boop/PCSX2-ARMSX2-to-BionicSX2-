@@ -6,24 +6,30 @@ include(GNUInstallDirs)
 #-------------------------------------------------------------------------------
 # Misc option
 #-------------------------------------------------------------------------------
-option(ENABLE_TESTS "Enables building the unit tests" ON)
+option(ENABLE_TESTS "Enables building the unit tests" OFF)
+option(ENABLE_QT_UI "Enables building the PCSX2 Qt interface." OFF)
 option(ENABLE_GSRUNNER "Enables building the GSRunner by default.  It can still be built with `make pcsx2-gsrunner` otherwise." OFF)
 option(LTO_PCSX2_CORE "Enable LTO/IPO/LTCG on the subset of pcsx2 that benefits most from it but not anything else")
-option(USE_VTUNE "Plug VTUNE to profile GS JIT.")
-option(PACKAGE_MODE "Use this option to ease packaging of PCSX2 (developer/distribution option)")
+option(USE_VTUNE "Plug VTUNE to profile GS JIT." OFF)
+option(PACKAGE_MODE "Use this option to ease packaging of PCSX2 (developer/distribution option)" OFF)
 
 #-------------------------------------------------------------------------------
 # Graphical option
 #-------------------------------------------------------------------------------
-if(NOT APPLE)
+if(NOT APPLE AND NOT IOS)
 	option(USE_OPENGL "Enable OpenGL GS renderer" ON)
 endif()
-option(USE_VULKAN "Enable Vulkan GS renderer" ON)
+if(NOT IOS)
+	option(USE_VULKAN "Enable Vulkan GS renderer" ON)
+else()
+	# iOS uses Metal renderer, not Vulkan
+	set(USE_VULKAN OFF CACHE BOOL "Vulkan not available on iOS" FORCE)
+endif()
 
 #-------------------------------------------------------------------------------
 # Path and lib option
 #-------------------------------------------------------------------------------
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT IOS)
 	option(ENABLE_SETCAP "Enable networking capability for DEV9" OFF)
 	option(X11_API "Enable X11 support" OFF)
 	option(WAYLAND_API "Enable Wayland support" OFF)
